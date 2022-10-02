@@ -1,18 +1,18 @@
-using System.Collections;
-using System.Collections.Generic;
+using System;
 using UnityEngine;
 
-public class GameEvents : MonoBehaviour
+namespace JumpEgg.Events
 {
-    // Start is called before the first frame update
-    void Start()
+    public class GameEvents
     {
-        
-    }
+        public static event Action<Transform> EggSettled;
 
-    // Update is called once per frame
-    void Update()
-    {
-        
+        public static void OnEggSettled(Transform targetTransform)
+        {
+            if(EggSettled != null)
+            {
+                EggSettled.Invoke(targetTransform);
+            }
+        }
     }
 }
